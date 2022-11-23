@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ $.Values.application.name }}
+  name: {{ $.Values.application.name }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: {{ $.Values.application.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.Values.application.name }}
+    spec:
+      containers:
+      - image: {{ $.Values.image }}
+        imagePullPolicy: Always
+        name: {{ $.Values.application.name }}
+        ports:
+        - containerPort: 80
+          protocol: TCP
+      dnsPolicy: ClusterFirst

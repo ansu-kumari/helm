@@ -1,0 +1,3 @@
+image: nginx
+application:
+  name: placeholder
